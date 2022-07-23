@@ -1,0 +1,42 @@
+ // Нерекурсивный алгоритм. 
+ public static IEnumerable<string> GetChildrenNamesNonRecursive(Tree tree)
+        {
+            if (tree == null)
+                throw new ArgumentNullException(nameof(tree));
+
+            Queue<Tree> trees = new Queue<Tree>();
+            trees.Enqueue(tree);
+
+            while (trees.Count > 0)
+            {
+                tree = trees.Dequeue();
+
+                yield return tree.Name;
+
+                foreach (var child in tree.Children)
+                {
+                    if (child != null)
+                        trees.Enqueue(child);
+                }
+            }
+        }
+
+// Рекурсивный алгоритм.
+ public static IEnumerable<string> GetChildrenNamesRecursive(Tree tree)
+        {
+            if (tree == null)
+                throw new ArgumentNullException(nameof(tree));
+
+            yield return tree.Name;
+
+            foreach (var child in tree.Children)
+            {
+                if (child != null)
+                {
+                    foreach (var name in GetChildrenNamesRecursive(child))
+                    {
+                        yield return name;
+                    }
+                }
+            }
+        }        
