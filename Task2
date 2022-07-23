@@ -1,0 +1,22 @@
+   public class Car
+    {
+        public string Model { get; set; }
+        public string Color { get; set; }
+        public string Description { get; set; }
+
+        public override bool Equals(object anotherCar)
+        {
+            if (!(anotherCar is Car))
+                return false;
+
+            var car = anotherCar as Car;
+
+            return this.Model == car.Model
+                && this.Color == car.Color;
+        }
+
+        public override int GetHashCode()
+        {
+            return this.Model.GetHashCode() % 3 + this.Color.GetHashCode() % 3;
+        }
+    }
