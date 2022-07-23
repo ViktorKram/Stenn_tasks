@@ -13,6 +13,6 @@
 // Вариант 2.        
    static void Swap(ref int first, ref int second, ref int third)
         {
-            //(first, second) = (second, first);
-            //(second, third) = (third, second);
+            (first, second) = (second, first);
+            (second, third) = (third, second);
         }        
